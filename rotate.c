@@ -12,45 +12,45 @@
 
 #include "push_swap.h"
 
-void	ft_rotate(t_stack *list)
+void	ft_rotate(t_stack *stack)
 {
-	t_list	**stack;
+	t_list	**list;
 	t_list *temp;
 
-	stack = &list->stack;
-	if (list->size > 1)
+	list = &stack->stack;
+	if (stack->size > 1)
 	{
-		ft_lstadd_back(list, stack, ft_lstnew(list, (*stack)->nb));
-		temp = (*stack);
-		*stack = (*stack)->next;
+		ft_lstadd_back(stack, list, ft_lstnew(stack, (*list)->nb));
+		temp = (*list);
+		*list = (*list)->next;
 		free(temp);
-		list->size--;
+		stack->size--;
 	}
 }
 
-void	ft_rr(t_stack *list_a, t_stack *list_b)
+void	ft_rr(t_stack *stack_a, t_stack *stack_b)
 {
-	ft_rotate(list_a);
-	ft_rotate(list_b);
+	ft_rotate(stack_a);
+	ft_rotate(stack_b);
 }
 
-void	ft_reverse_rotate(t_stack *list)
+void	ft_reverse_rotate(t_stack *stack)
 {
-	t_list	**stack;
+	t_list	**list;
 	t_list *last;
 
-	stack = &list->stack;
-	if (list->size > 1)
+	list = &stack->stack;
+	if (stack->size > 1)
 	{
-		last = ft_lstlast(list);	
-		ft_lstadd_front(list, stack, ft_lstnew(list, last->nb));
+		last = ft_lstlast(stack);	
+		ft_lstadd_front(stack, list, ft_lstnew(stack, last->nb));
 		free(last);
-		list->size--;
+		stack->size--;
 	}
 }
 
-void	ft_rrr(t_stack *list_a, t_stack *list_b)
+void	ft_rrr(t_stack *stack_a, t_stack *stack_b)
 {
-	ft_reverse_rotate(list_a);
-	ft_reverse_rotate(list_b);
+	ft_reverse_rotate(stack_a);
+	ft_reverse_rotate(stack_b);
 }

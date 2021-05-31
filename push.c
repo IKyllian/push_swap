@@ -12,48 +12,57 @@
 
 #include "push_swap.h"
 
-void	ft_pa(t_stack *list_a, t_stack *list_b)
+void	ft_pa(t_stack *stack_a, t_stack *stack_b)
 {
-	t_list **stack_a;
-	t_list **stack_b;
+	t_list **list_a;
+	t_list **list_b;
 	t_list *temp;
 
-	stack_a = &list_a->stack;
-	stack_b = &list_b->stack;
-	if (list_b > 0)
+	list_a = &stack_a->stack;
+	list_b = &stack_b->stack;
+	if (stack_b->size > 0)
 	{
-		ft_lstadd_front(list_a, stack_a, ft_lstnew(list_a, (*stack_b)->nb));
-		if (list_b->size > 1)
+		ft_lstadd_front(stack_a, list_a, ft_lstnew(stack_a, (*list_b)->nb));
+		if (stack_b->size > 1)
 		{
-			temp = (*stack_b);
-			*stack_b = (*stack_b)->next;
+			temp = (*list_b);
+			*list_b = (*list_b)->next;
 			free(temp);
-			list_b->size--;
+			stack_b->size--;
 		}
 		else
-			free((*stack_b));
+		{
+			*list_b = NULL;
+			stack_b->size--;
+			free((*list_b));
+		}
 	}
 }
 
-void	ft_pb(t_stack *list_a, t_stack *list_b)
+void	ft_pb(t_stack *stack_a, t_stack *stack_b)
 {
-	t_list **stack_a;
-	t_list **stack_b;
+	t_list **list_a;
+	t_list **list_b;
 	t_list *temp;
 	
-	stack_a = &list_a->stack;
-	stack_b = &list_b->stack;
-	if (list_a->size != 0)
+	list_a = &stack_a->stack;
+	list_b = &stack_b->stack;
+	if (stack_a->size > 0)
 	{
-		ft_lstadd_front(list_b, stack_b, ft_lstnew(list_b, (*stack_a)->nb));
-		if (list_a->size > 1)
+		ft_lstadd_front(stack_b, list_b, ft_lstnew(stack_b, (*list_a)->nb));
+		if (stack_a->size > 1)
 		{
-			temp = (*stack_a);
-			*stack_a = (*stack_a)->next;
+			temp = (*list_a);
+			*list_a = (*list_a)->next;
 			free(temp);
-			list_a->size--;
+			stack_a->size--;
 		}
 		else
-			free((*stack_a));
+		{
+			free((*list_a));
+			*list_a = NULL;
+			stack_a->size--;
+		}
+			
 	}
 }

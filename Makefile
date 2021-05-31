@@ -6,6 +6,10 @@ SRCS =  main.c \
 		push.c \
 		rotate.c \
 		swap.c \
+		get_next_line.c \
+		get_next_line_utils.c \
+		ft_strcmp.c \
+		ft_putnbr.c \
 		
 OBJS = $(SRCS:.c=.o)
 
