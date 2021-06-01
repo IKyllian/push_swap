@@ -28,14 +28,13 @@ void	ft_pa(t_stack *stack_a, t_stack *stack_b)
 			temp = (*list_b);
 			*list_b = (*list_b)->next;
 			free(temp);
-			stack_b->size--;
 		}
 		else
 		{
 			*list_b = NULL;
-			stack_b->size--;
 			free((*list_b));
 		}
+		stack_b->size--;
 	}
 }
 
@@ -55,14 +54,12 @@ void	ft_pb(t_stack *stack_a, t_stack *stack_b)
 			temp = (*list_a);
 			*list_a = (*list_a)->next;
 			free(temp);
-			stack_a->size--;
 		}
 		else
 		{
 			free((*list_a));
 			*list_a = NULL;
-			stack_a->size--;
 		}
-			
+		stack_a->size--;
 	}
 }

@@ -15,7 +15,7 @@
 void	ft_rotate(t_stack *stack)
 {
 	t_list	**list;
-	t_list *temp;
+	t_list	*temp;
 
 	list = &stack->stack;
 	if (stack->size > 1)
@@ -37,7 +37,7 @@ void	ft_rr(t_stack *stack_a, t_stack *stack_b)
 void	ft_reverse_rotate(t_stack *stack)
 {
 	t_list	**list;
-	t_list *last;
+	t_list	*last;
 
 	list = &stack->stack;
 	if (stack->size > 1)
