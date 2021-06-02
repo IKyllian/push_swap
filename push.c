@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdelport <kdelport@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 09:42:41 by kdelport          #+#    #+#             */
-/*   Updated: 2021/05/28 13:43:00 by kdelport         ###   ########lyon.fr   */
+/*   Updated: 2021/06/02 14:15:44 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_pa(t_stack *stack_a, t_stack *stack_b)
+void	ft_pa(t_stack *stack_a, t_stack *stack_b, int must_print)
 {
 	t_list **list_a;
 	t_list **list_b;
@@ -22,7 +22,7 @@ void	ft_pa(t_stack *stack_a, t_stack *stack_b)
 	list_b = &stack_b->stack;
 	if (stack_b->size > 0)
 	{
-		ft_lstadd_front(stack_a, list_a, ft_lstnew(stack_a, (*list_b)->nb));
+		ft_lstadd_front(stack_a, list_a, ft_lstnew(stack_a, (*list_b)->nb, (*list_b)->pos));
 		if (stack_b->size > 1)
 		{
 			temp = (*list_b);
@@ -31,14 +31,16 @@ void	ft_pa(t_stack *stack_a, t_stack *stack_b)
 		}
 		else
 		{
-			*list_b = NULL;
 			free((*list_b));
+			*list_b = NULL;
 		}
 		stack_b->size--;
 	}
+	if (must_print)
+		ft_putstr("pa\n");
 }
 
-void	ft_pb(t_stack *stack_a, t_stack *stack_b)
+void	ft_pb(t_stack *stack_a, t_stack *stack_b, int must_print)
 {
 	t_list **list_a;
 	t_list **list_b;
@@ -48,7 +50,7 @@ void	ft_pb(t_stack *stack_a, t_stack *stack_b)
 	list_b = &stack_b->stack;
 	if (stack_a->size > 0)
 	{
-		ft_lstadd_front(stack_b, list_b, ft_lstnew(stack_b, (*list_a)->nb));
+		ft_lstadd_front(stack_b, list_b, ft_lstnew(stack_b, (*list_a)->nb, (*list_a)->pos));
 		if (stack_a->size > 1)
 		{
 			temp = (*list_a);
@@ -62,4 +64,6 @@ void	ft_pb(t_stack *stack_a, t_stack *stack_b)
 		}
 		stack_a->size--;
 	}
+	if (must_print)
+		ft_putstr("pb\n");
 }

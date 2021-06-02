@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 09:42:16 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/01 16:31:01 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/02 13:27:44 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,16 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 		if (i <= stack_b->size)
 		{
 			ft_putnbr(list_b->nb);
-			ft_putstr("pos => ");
+			ft_putstr(" pos => ");
 			ft_putnbr(list_b->pos);
 			list_b = list_b->next;
 		}
 		ft_putstr("\n");	
 	}
-	ft_putstr("----------");
+	ft_putstr("------------------");
 	ft_putstr("\n");
 	ft_putstr("a");
-	ft_putstr("\t");
+	ft_putstr("\t\t");
 	ft_putstr("b");
 	ft_putstr("\n");
 }
@@ -80,7 +80,7 @@ t_list	*ft_lstlast(t_stack *stack)
 	return (list);
 }
 
-t_list	*ft_lstnew(t_stack *stack, int nb)
+t_list	*ft_lstnew(t_stack *stack, int nb, int pos)
 {
 	t_list	*list;
 
@@ -89,7 +89,7 @@ t_list	*ft_lstnew(t_stack *stack, int nb)
 	if (!list)
 		return (NULL);
 	list->nb = nb;
-	list->pos = 0;
+	list->pos = pos;
 	list->prev = NULL;
 	list->next = NULL;
 	return (list);
@@ -109,6 +109,7 @@ void	ft_lstadd_back(t_stack *stack, t_list **alst, t_list *new)
 		new->prev = last;
 		new->next = *alst;
 		last->next = new;
+		(*alst)->prev = new;
 	}
 	stack->size++;
 }
@@ -124,6 +125,7 @@ void	ft_lstadd_front(t_stack *stack, t_list **alst, t_list *new)
 		last = ft_lstlast(stack);
 		last->next = new;
 		new->next = *alst;
+		new->prev = last;
 		(*alst)->prev = new;
 		*alst = new;
 	}
