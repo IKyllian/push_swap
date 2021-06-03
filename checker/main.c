@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 12:14:43 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/02 12:16:21 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/03 14:00:47 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int main(int argc, char **argv)
 			ft_putstr("Error: L'instruction n\'existe pas\n");
 		else
 			print_stacks(&stack_a, &stack_b);
+		free(line);
+		line = NULL;
 	}
 	if (!check_order(&stack_a, &stack_b))
 		ft_putstr("KO\n");

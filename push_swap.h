@@ -35,6 +35,8 @@ void	ft_putstr(char *str);
 
 void	print_stacks(t_stack *stack_a, t_stack *stack_b);
 
+t_stack	init_list(void);
+
 /*			PARSING           */
 int		parsing(char **argv, t_stack *stack_a);
 void	fill_pos(t_list *min, t_list *max, t_list *first, t_stack *stack_a);

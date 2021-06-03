@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 09:42:23 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/02 16:49:02 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/03 14:40:30 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,39 +69,87 @@ void	sort_five(t_stack *stack_a, t_stack *stack_b)
 		ft_pa(stack_a, stack_b, 1);
 }
 
-// void	sort_hundred(t_stack *stack_a, t_stack *stack_b)
-// {
-// 	int		i;
-// 	t_list	*list;
-// 	t_list	*first;
-// 	t_list	*one;
-// 	t_list	*two;
+void	sort_hundred(t_stack *stack_a, t_stack *stack_b)
+{
+	int		i;
+	int		j;
+	t_list	*list;
+	t_list	*one;
+	t_list	*two;
+	t_list	*temp;
+	int		index_pos;
+	int		half;
 
-// 	i = 0
-// 	list = stack_a->stack;
-// 	first = stack_a->stack;
-// 	while (stack_a->size > 0)
-// 	{
-// 		while (++i < stack_a->size)
-// 		{
-// 			if (list->pos >= 0 && list->pos <= 19)
-// 				one = list;
-// 			list = list->next;
-// 		}
-// 		i = 0
-// 		list = first->prev;
-// 		while (++i < stack_a->size)
-// 		{
-// 			if (list->pos >= 0 && list->pos <= 19)
-// 				two = list;
-// 			list = list->next;
-// 		}
-// 		if (stack_a->size - one->pos > stack_a->size - two->pos)
-// 			// rra;
-// 		else
-// 			// ra;
-// 	}
-// }
+	list = stack_a->stack;
+	while (stack_a->size > 0)
+	{
+		i = 0;
+		list = stack_a->stack;
+		while (++i <= stack_a->size)
+		{
+			if (list->pos >= 0 && list->pos <= 19)
+			{
+				one = list;
+				break ;
+			}
+			list = list->next;
+		}
+		j = 0;
+		list = stack_a->stack;
+		while (++j <= stack_a->size)
+		{
+			if (list->pos >= 0 && list->pos <= 19)
+			{
+				two = list;
+				break ;
+			}
+			list = list->prev;
+		}	
+		if (i > j)
+		{
+			while (j-- > 0)
+				ft_reverse_rotate(stack_a, 1, 'a');
+		}
+		else
+		{
+			while (j-- > 0)
+				ft_rotate(stack_a, 1, 'a');
+		}
+		ft_pb(stack_a, stack_b, 1);
+	}
+	list = stack_b->stack;
+	while (stack_b->size > 0)
+	{
+		i = 0;
+		list = stack_b->stack;
+		temp = list;
+		index_pos = 0;
+		if (stack_b->size % 2 != 0)
+			half = (stack_b->size + 1) / 2;
+		else
+			half = stack_b->size / 2;
+		while (++i <= stack_b->size)
+		{
+			if (list->nb > temp->nb)
+			{
+				index_pos = i - 1;
+				temp = list; 
+			}
+			list = list->next;
+		}
+		if (index_pos < half)
+		{
+			while (stack_b->stack->nb != temp->nb)
+				ft_rotate(stack_b, 1, 'b');
+		}
+		else
+		{
+			while (stack_b->stack->nb != temp->nb)
+				ft_reverse_rotate(stack_b, 1, 'b');
+		}
+		ft_pa(stack_a, stack_b, 1);
+	}
+}
 
 int main(int argc, char **argv)
 {
@@ -124,8 +172,8 @@ int main(int argc, char **argv)
 			sort_three(&stack_a);
 		else if (stack_a.size == 5)
 			sort_five(&stack_a, &stack_b);
-		// else if (stack_a.size == 100)
-		// 	sort_hundred(&stack_a, &stack_b);
+		else if (stack_a.size >= 6 && stack_a.size <= 100)
+			sort_hundred(&stack_a, &stack_b);
 	}
 	print_stacks(&stack_a, &stack_b);
 	return (0);

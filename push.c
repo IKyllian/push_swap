@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 09:42:41 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/02 14:15:44 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/03 13:13:03 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	ft_pa(t_stack *stack_a, t_stack *stack_b, int must_print)
 {
-	t_list **list_a;
-	t_list **list_b;
-	t_list *temp;
+	t_list	**list_a;
+	t_list	**list_b;
+	t_list	*temp;
+	t_list	*last;
 
 	list_a = &stack_a->stack;
 	list_b = &stack_b->stack;
@@ -28,13 +29,17 @@ void	ft_pa(t_stack *stack_a, t_stack *stack_b, int must_print)
 			temp = (*list_b);
 			*list_b = (*list_b)->next;
 			free(temp);
+			stack_b->size--;
+			last = ft_lstlast(stack_b);
+			(*list_b)->prev = last;
+			last->next = *list_b;
 		}
 		else
 		{
 			free((*list_b));
 			*list_b = NULL;
-		}
-		stack_b->size--;
+			stack_b->size--;
+		}	
 	}
 	if (must_print)
 		ft_putstr("pa\n");
@@ -42,9 +47,10 @@ void	ft_pa(t_stack *stack_a, t_stack *stack_b, int must_print)
 
 void	ft_pb(t_stack *stack_a, t_stack *stack_b, int must_print)
 {
-	t_list **list_a;
-	t_list **list_b;
-	t_list *temp;
+	t_list	**list_a;
+	t_list	**list_b;
+	t_list	*temp;
+	t_list	*last;
 	
 	list_a = &stack_a->stack;
 	list_b = &stack_b->stack;
@@ -56,13 +62,17 @@ void	ft_pb(t_stack *stack_a, t_stack *stack_b, int must_print)
 			temp = (*list_a);
 			*list_a = (*list_a)->next;
 			free(temp);
+			stack_a->size--;
+			last = ft_lstlast(stack_a);
+			(*list_a)->prev = last;
+			last->next = *list_a;
 		}
 		else
 		{
 			free((*list_a));
 			*list_a = NULL;
+			stack_a->size--;
 		}
-		stack_a->size--;
 	}
 	if (must_print)
 		ft_putstr("pb\n");
