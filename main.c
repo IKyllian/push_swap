@@ -75,17 +75,19 @@ void	sort_hundred(t_stack *stack_a, t_stack *stack_b)
 	int		half;
 	int 	chunk;
 	int		limit;
+	int 	size;
 
 	list = stack_a->stack;
 	chunk = stack_a->size / 5;
 	limit = chunk;
+	size = stack_a->size;
 	while (stack_a->size > 0)
 	{
 		i = 0;
 		list = stack_a->stack;
 		while (++i <= stack_a->size)
 		{
-			if (list->pos >= limit - 20 && list->pos < limit)
+			if (list->pos >= limit - chunk && list->pos < limit)
 			{
 				one = list;
 				break ;
@@ -96,7 +98,7 @@ void	sort_hundred(t_stack *stack_a, t_stack *stack_b)
 		list = stack_a->stack;
 		while (++j <= stack_a->size)
 		{
-			if (list->pos >= limit - 20 && list->pos < limit)
+			if (list->pos >= limit - chunk && list->pos < limit)
 			{
 				two = list;
 				break ;
@@ -113,14 +115,14 @@ void	sort_hundred(t_stack *stack_a, t_stack *stack_b)
 			while (--i > 0)
 				ft_rotate(stack_a, 1, 'a');
 		}
-		if (stack_a->size == 81)
-			limit += 20;
-		else if (stack_a->size == 61)
-			limit += 20;
-		else if (stack_a->size == 41)
-			limit += 20;
-		else if (stack_a->size == 21)
-			limit += 20;
+		if (stack_a->size == (size - chunk) + 1)
+			limit += chunk;
+		else if (stack_a->size == (size - (chunk * 2)) + 1)
+			limit += chunk;
+		else if (stack_a->size == (size - (chunk * 3)) + 1)
+			limit += chunk;
+		else if (stack_a->size == (size - (chunk * 4)) + 1)
+			limit += chunk;
 		ft_pb(stack_a, stack_b, 1);
 	}
 	list = stack_b->stack;
@@ -149,6 +151,106 @@ void	sort_hundred(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
+void	sort_five_hundred(t_stack *stack_a, t_stack *stack_b)
+{
+	int		i;
+	int		j;
+	t_list	*list;
+	t_list	*one;
+	t_list	*two;
+	t_list	*biggest;
+	int		index_pos;
+	int		half;
+	int 	chunk;
+	int		limit;
+	int		size;
+
+	list = stack_a->stack;
+	chunk = stack_a->size / 11;
+	limit = chunk;
+	size = stack_a->size;
+	while (stack_a->size > 0)
+	{
+		i = 0;
+		list = stack_a->stack;
+		while (++i <= stack_a->size)
+		{
+			if (list->pos >= limit - chunk && list->pos < limit)
+			{
+				one = list;
+				break ;
+			}
+			list = list->next;
+		}
+		j = 0;
+		list = stack_a->stack;
+		while (++j <= stack_a->size)
+		{
+			if (list->pos >= limit - chunk && list->pos < limit)
+			{
+				two = list;
+				break ;
+			}
+			list = list->prev;
+		}	
+		if (i > j)
+		{
+			while (--j > 0)
+				ft_reverse_rotate(stack_a, 1, 'a');
+		}
+		else
+		{
+			while (--i > 0)
+				ft_rotate(stack_a, 1, 'a');
+		}
+		if (stack_a->size == (size - chunk) + 1)
+			limit += chunk;
+		else if (stack_a->size == (size - (chunk * 2)) + 1)
+			limit += chunk;
+		else if (stack_a->size == (size - (chunk * 3)) + 1)
+			limit += chunk;
+		else if (stack_a->size == (size - (chunk * 4)) + 1)
+			limit += chunk;
+		else if (stack_a->size == (size - (chunk * 5)) + 1)
+			limit += chunk;
+		else if (stack_a->size == (size - (chunk * 6)) + 1)
+			limit += chunk;
+		else if (stack_a->size == (size - (chunk * 7)) + 1)
+			limit += chunk;
+		else if (stack_a->size == (size - (chunk * 8)) + 1)
+			limit += chunk;
+		else if (stack_a->size == (size - (chunk * 9)) + 1)
+			limit += chunk;
+		else if (stack_a->size == (size - (chunk * 10)) + 1)
+			limit += chunk;
+		
+		ft_pb(stack_a, stack_b, 1);
+	}
+	list = stack_b->stack;
+	while (stack_b->size > 0)
+	{
+		i = 0;
+		list = stack_b->stack;
+		
+		index_pos = 0;
+		if (stack_b->size % 2 != 0)
+			half = (stack_b->size + 1) / 2;
+		else
+			half = stack_b->size / 2;
+		biggest = get_biggest(stack_b, &index_pos);
+		if (index_pos < half)
+		{
+			while (stack_b->stack->nb != biggest->nb)
+				ft_rotate(stack_b, 1, 'b');
+		}
+		else
+		{
+			while (stack_b->stack->nb != biggest->nb)
+				ft_reverse_rotate(stack_b, 1, 'b');
+		}
+		ft_pa(stack_a, stack_b, 1);
+	}
+}
 
 int main(int argc, char **argv)
 {
@@ -171,8 +273,10 @@ int main(int argc, char **argv)
 			sort_three(&stack_a);
 		else if (stack_a.size == 5)
 			sort_five(&stack_a, &stack_b);
-		else if (stack_a.size >= 6)
+		else if (stack_a.size >= 6 && stack_a.size < 500)
 			sort_hundred(&stack_a, &stack_b);
+		else if (stack_a.size >= 500)
+			sort_five_hundred(&stack_a, &stack_b);
 	}
 	// print_stacks(&stack_a, &stack_b);
 	return (0);
