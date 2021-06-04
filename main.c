@@ -21,52 +21,46 @@ t_stack	init_list(void)
 	return (stack);
 }
 
-void	sort_three(t_stack *stack_a)
+t_list	*get_biggest(t_stack *stack, int *index_pos)
 {
-	t_list	*first;
-	t_list	*middle;
-	t_list	*last;
+	int		i;
+	t_list	*list;
+	t_list	*temp;
 
-	first = stack_a->stack;
-	middle = stack_a->stack->next;
-	last = ft_lstlast(stack_a);
-	if (first->nb < middle->nb && first->nb < last->nb && middle->nb < last->nb)
-		return ;
-	else if (first->nb > middle->nb && middle->nb < last->nb && first->nb < last->nb)
-		ft_swap(stack_a, 1, 'a');
-	else if (first->nb > middle->nb && middle->nb > last->nb)
+	i = 0;
+	list = stack->stack;
+	temp = list;
+	while (++i <= stack->size)
 	{
-		ft_swap(stack_a, 1, 'a');
-		ft_reverse_rotate(stack_a, 1, 'a');
+		if (list->nb > temp->nb)
+		{
+			*index_pos = i - 1;
+			temp = list; 
+		}
+		list = list->next;
 	}
-	else if (first->nb > middle->nb && middle->nb < last->nb && first->nb > last->nb)
-		ft_rotate(stack_a, 1, 'a');
-	else if (first->nb < middle->nb && first->nb < last->nb)
-	{
-		ft_swap(stack_a, 1, 'a');
-		ft_rotate(stack_a, 1, 'a');
-	}
-	else if (first->nb < middle->nb && first->nb > last->nb)
-		ft_reverse_rotate(stack_a, 1, 'a');
+	return (temp);
 }
 
-void	sort_five(t_stack *stack_a, t_stack *stack_b)
+t_list	*get_smallest(t_stack *stack, int *index_pos)
 {
-	while (stack_a->size != 3)
+	int		i;
+	t_list	*list;
+	t_list	*temp;
+
+	i = 0;
+	list = stack->stack;
+	temp = list;
+	while (++i <= stack->size)
 	{
-		if (stack_a->stack->pos == 0 || stack_a->stack->pos == 1)
-			ft_pb(stack_a, stack_b, 1);
-		else if (stack_a->stack->prev->pos == 0 || stack_a->stack->prev->pos == 1 
-				|| stack_a->stack->prev->prev->pos == 0 || stack_a->stack->prev->prev->pos == 1)
-			ft_reverse_rotate(stack_a, 1, 'a');
-		else
-			ft_rotate(stack_a, 1, 'a');
+		if (list->nb < temp->nb)
+		{
+			*index_pos = i - 1;
+			temp = list; 
+		}
+		list = list->next;
 	}
-	sort_three(stack_a);
-	if (stack_b->stack->nb < stack_b->stack->next->nb)
-		ft_swap(stack_b, 1, 'b');
-	while (stack_b->size > 0)
-		ft_pa(stack_a, stack_b, 1);
+	return (temp);
 }
 
 void	sort_hundred(t_stack *stack_a, t_stack *stack_b)
@@ -76,18 +70,22 @@ void	sort_hundred(t_stack *stack_a, t_stack *stack_b)
 	t_list	*list;
 	t_list	*one;
 	t_list	*two;
-	t_list	*temp;
+	t_list	*biggest;
 	int		index_pos;
 	int		half;
+	int 	chunk;
+	int		limit;
 
 	list = stack_a->stack;
+	chunk = stack_a->size / 5;
+	limit = chunk;
 	while (stack_a->size > 0)
 	{
 		i = 0;
 		list = stack_a->stack;
 		while (++i <= stack_a->size)
 		{
-			if (list->pos >= 0 && list->pos <= 19)
+			if (list->pos >= limit - 20 && list->pos < limit)
 			{
 				one = list;
 				break ;
@@ -98,7 +96,7 @@ void	sort_hundred(t_stack *stack_a, t_stack *stack_b)
 		list = stack_a->stack;
 		while (++j <= stack_a->size)
 		{
-			if (list->pos >= 0 && list->pos <= 19)
+			if (list->pos >= limit - 20 && list->pos < limit)
 			{
 				two = list;
 				break ;
@@ -107,14 +105,22 @@ void	sort_hundred(t_stack *stack_a, t_stack *stack_b)
 		}	
 		if (i > j)
 		{
-			while (j-- > 0)
+			while (--j > 0)
 				ft_reverse_rotate(stack_a, 1, 'a');
 		}
 		else
 		{
-			while (j-- > 0)
+			while (--i > 0)
 				ft_rotate(stack_a, 1, 'a');
 		}
+		if (stack_a->size == 81)
+			limit += 20;
+		else if (stack_a->size == 61)
+			limit += 20;
+		else if (stack_a->size == 41)
+			limit += 20;
+		else if (stack_a->size == 21)
+			limit += 20;
 		ft_pb(stack_a, stack_b, 1);
 	}
 	list = stack_b->stack;
@@ -122,34 +128,27 @@ void	sort_hundred(t_stack *stack_a, t_stack *stack_b)
 	{
 		i = 0;
 		list = stack_b->stack;
-		temp = list;
+		
 		index_pos = 0;
 		if (stack_b->size % 2 != 0)
 			half = (stack_b->size + 1) / 2;
 		else
 			half = stack_b->size / 2;
-		while (++i <= stack_b->size)
-		{
-			if (list->nb > temp->nb)
-			{
-				index_pos = i - 1;
-				temp = list; 
-			}
-			list = list->next;
-		}
+		biggest = get_biggest(stack_b, &index_pos);
 		if (index_pos < half)
 		{
-			while (stack_b->stack->nb != temp->nb)
+			while (stack_b->stack->nb != biggest->nb)
 				ft_rotate(stack_b, 1, 'b');
 		}
 		else
 		{
-			while (stack_b->stack->nb != temp->nb)
+			while (stack_b->stack->nb != biggest->nb)
 				ft_reverse_rotate(stack_b, 1, 'b');
 		}
 		ft_pa(stack_a, stack_b, 1);
 	}
 }
+
 
 int main(int argc, char **argv)
 {
@@ -172,9 +171,9 @@ int main(int argc, char **argv)
 			sort_three(&stack_a);
 		else if (stack_a.size == 5)
 			sort_five(&stack_a, &stack_b);
-		else if (stack_a.size >= 6 && stack_a.size <= 100)
+		else if (stack_a.size >= 6)
 			sort_hundred(&stack_a, &stack_b);
 	}
-	print_stacks(&stack_a, &stack_b);
+	// print_stacks(&stack_a, &stack_b);
 	return (0);
 }

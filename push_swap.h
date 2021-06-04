@@ -37,6 +37,10 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b);
 
 t_stack	init_list(void);
 
+/*			SORT           */
+void	sort_three(t_stack *stack_a);
+void	sort_five(t_stack *stack_a, t_stack *stack_b);
+
 /*			PARSING           */
 int		parsing(char **argv, t_stack *stack_a);
 void	fill_pos(t_list *min, t_list *max, t_list *first, t_stack *stack_a);

@@ -13,6 +13,7 @@ SRCS =  main.c \
 		./checker/checker.c \
 		ft_putstr.c \
 		parsing.c \
+		sort.c \
 		
 OBJS = $(SRCS:.c=.o)
 

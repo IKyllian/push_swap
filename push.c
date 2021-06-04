@@ -73,7 +73,7 @@ void	ft_pb(t_stack *stack_a, t_stack *stack_b, int must_print)
 			*list_a = NULL;
 			stack_a->size--;
 		}
+		if (must_print)
+			ft_putstr("pb\n");
 	}
-	if (must_print)
-		ft_putstr("pb\n");
 }
