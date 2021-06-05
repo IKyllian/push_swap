@@ -41,24 +41,24 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 		if (i <= stack_a->size)
 		{
 			ft_putnbr(list_a->nb);
-			ft_putstr(" pos => ");
-			ft_putnbr(list_a->pos);
+			// ft_putstr(" pos => ");
+			// ft_putnbr(list_a->pos);
 			list_a = list_a->next;
 		}
 		ft_putstr("\t");
 		if (i <= stack_b->size)
 		{
 			ft_putnbr(list_b->nb);
-			ft_putstr(" pos => ");
-			ft_putnbr(list_b->pos);
+			// ft_putstr(" pos => ");
+			// ft_putnbr(list_b->pos);
 			list_b = list_b->next;
 		}
 		ft_putstr("\n");	
 	}
-	ft_putstr("------------------");
+	ft_putstr("---------");
 	ft_putstr("\n");
 	ft_putstr("a");
-	ft_putstr("\t\t");
+	ft_putstr("\t");
 	ft_putstr("b");
 	ft_putstr("\n");
 }

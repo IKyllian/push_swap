@@ -40,6 +40,15 @@ t_stack	init_list(void);
 /*			SORT           */
 void	sort_three(t_stack *stack_a);
 void	sort_five(t_stack *stack_a, t_stack *stack_b);
+void	sort_hundred(t_stack *stack_a, t_stack *stack_b, int size_a);
+void	sort_five_hundred(t_stack *stack_a, t_stack *stack_b, int size_a);
+
+void	set_chunk_limit500(t_stack *stack, int size, int *limit, int chunk);
+void	set_chunk_limit100(t_stack *stack, int size, int *limit, int chunk);
+
+
+t_list	*get_biggest(t_stack *stack, int *index_pos);
+int		get_smallest(t_stack *stack, int limit, int chunk, int reverse);
 
 /*			PARSING           */
 int		parsing(char **argv, t_stack *stack_a);

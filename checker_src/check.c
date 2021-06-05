@@ -12,6 +12,15 @@
 
 #include "../push_swap.h"
 
+t_stack	init_list(void)
+{
+	t_stack stack;
+
+	stack.size = 0;
+	stack.stack = NULL;
+	return (stack);
+}
+
 int main(int argc, char **argv)
 {
 	t_stack stack_a;
@@ -24,7 +33,8 @@ int main(int argc, char **argv)
 	stack_b = init_list();
 	if (!parsing(argv, &stack_a))
 		return (1);
-	print_stacks(&stack_a, &stack_b);
+	set_pos(&stack_a);
+	// print_stacks(&stack_a, &stack_b);
 	while (get_next_line(0, &line))
 	{
 		if (!check_cmd(line, &stack_a, &stack_b))

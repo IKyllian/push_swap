@@ -1,42 +1,60 @@
-NAME = push_swap
+NAME_P_S = push_swap
+NAME_CHECKER = checker
 
 HEADER = push_swap.h
-SRCS =  main.c \
+SRCS_P_S =  main.c \
 		list_utils.c \
-		push.c \
-		rotate.c \
-		swap.c \
-		get_next_line.c \
-		get_next_line_utils.c \
-		ft_strcmp.c \
-		ft_putnbr.c \
-		./checker/checker.c \
-		ft_putstr.c \
+		./checker_src/checker.c \
+		./operations/push.c \
+		./operations/rotate.c \
+		./operations/swap.c \
+		./str/ft_strcmp.c \
+		./str/ft_putnbr.c \
+		./str/ft_putstr.c \
 		parsing.c \
 		sort.c \
-		
-OBJS = $(SRCS:.c=.o)
+		get_number.c \
+		chunk.c \
+
+SRCS_CHECKER = \
+			./checker_src/checker.c \
+			./checker_src/check.c \
+			list_utils.c \
+			./str/ft_strcmp.c \
+			./str/ft_putnbr.c \
+			./str/ft_putstr.c \
+			./gnl/get_next_line.c \
+			./gnl/get_next_line_utils.c \
+			./operations/push.c \
+			./operations/rotate.c \
+			./operations/swap.c \
+			parsing.c \
+
+OBJS_P_S = $(SRCS_P_S:.c=.o)
+OBJS_CHECKER = $(SRCS_CHECKER:.c=.o)
 
 CC = gcc
 FLAGS = -Wextra -Werror -Wall
 RM = rm -f
 
-all : $(NAME)
+all : $(NAME_P_S) $(NAME_CHECKER)
  
 %.o : %.c $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(NAME) : $(OBJS) $(HEADER)
-		$(CC) $(FLAGS) -o $@ $(OBJS)
+$(NAME_P_S) : $(OBJS_P_S) $(HEADER)
+		$(CC) $(FLAGS) -o $@ $(OBJS_P_S)
 
-run : $(NAME)
-	./push_swap
+$(NAME_CHECKER) : $(OBJS_CHECKER) $(HEADER)
+		$(CC) $(FLAGS) -o $@ $(OBJS_CHECKER)
 
 clean :
-		$(RM) $(OBJS)
+		$(RM) $(OBJS_P_S)
+		$(RM) $(OBJS_CHECKER)
 
 fclean : clean
-	$(RM) $(NAME)
+		$(RM) $(NAME_P_S)
+		$(RM) $(NAME_CHECKER)
 
 re : fclean all
 

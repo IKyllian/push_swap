@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdelport <kdelport@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/24 09:57:41 by kdelport          #+#    #+#             */
-/*   Updated: 2020/11/24 10:10:48 by kdelport         ###   ########lyon.fr   */
+/*   Created: 2021/04/30 14:31:06 by kdelport          #+#    #+#             */
+/*   Updated: 2021/04/30 14:31:45 by kdelport         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void	ft_putnbr(int n)
+int	ft_strcmp(const char *str1, const char *str2)
 {
-	long nb;
+	unsigned int	i;
 
-	nb = n;
-	if (nb == -2147483648)
+	i = 0;
+	while (str1[i] && str2[i])
 	{
-		write(1, "-2147483648", 11);
-		return ;
+		if ((unsigned char)str1[i] != (unsigned char)str2[i])
+			return ((unsigned char)str1[i] - (unsigned char)str2[i]);
+		i++;
 	}
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb *= -1;
-	}
-	if (nb >= 10)
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
-	else
-		ft_putchar(nb + 48);
+	return ((unsigned char)str1[i] - (unsigned char)str2[i]);
 }
