@@ -14,7 +14,7 @@ t_list	*get_biggest(t_stack *stack, int *index_pos)
 		if (list->nb > temp->nb)
 		{
 			*index_pos = i - 1;
-			temp = list; 
+			temp = list;
 		}
 		list = list->next;
 	}

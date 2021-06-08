@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 13:10:25 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/01 13:14:48 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/08 16:00:52 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_putchar(char c)
 
 void	ft_putstr(char *str)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (str[++i])

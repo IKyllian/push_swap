@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 09:43:07 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/02 12:46:05 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/08 15:58:43 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_swap(t_stack *stack, int must_print, char which_stack)
 {
-	int temp_nb;
+	int	temp_nb;
 	int	temp_pos;
 
 	if (stack->size == 0 || stack->size == 1)
@@ -30,7 +30,7 @@ void	ft_swap(t_stack *stack, int must_print, char which_stack)
 		if (which_stack == 'a')
 			ft_putstr("sa\n");
 		else
-			ft_putstr("sb\n");	
+			ft_putstr("sb\n");
 	}
 }
 

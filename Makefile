@@ -11,7 +11,8 @@ SRCS_P_S =  main.c \
 		./str/ft_strcmp.c \
 		./str/ft_putnbr.c \
 		./str/ft_putstr.c \
-		parsing.c \
+		./parsing/parsing.c \
+		./parsing/set_pos.c \
 		sort.c \
 		get_number.c \
 		chunk.c \
@@ -28,7 +29,9 @@ SRCS_CHECKER = \
 			./operations/push.c \
 			./operations/rotate.c \
 			./operations/swap.c \
-			parsing.c \
+			./parsing/parsing.c \
+			./parsing/set_pos.c \
+			get_number.c \
 
 OBJS_P_S = $(SRCS_P_S:.c=.o)
 OBJS_CHECKER = $(SRCS_CHECKER:.c=.o)

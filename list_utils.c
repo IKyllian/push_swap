@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 09:42:16 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/02 13:27:44 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/08 15:50:46 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 void	print_list(t_stack *stack)
 {
-	int i;
-	t_list *list;
+	int		i;
+	t_list	*list;
 
 	list = stack->stack;
 	i = 0;
 	while (++i < stack->size)
-	{
 		if (list->next)
-			list = list->next;		
-	}
+			list = list->next;
 }
 
 void	print_stacks(t_stack *stack_a, t_stack *stack_b)
@@ -53,7 +51,7 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 			// ft_putnbr(list_b->pos);
 			list_b = list_b->next;
 		}
-		ft_putstr("\n");	
+		ft_putstr("\n");
 	}
 	ft_putstr("---------");
 	ft_putstr("\n");
@@ -73,18 +71,43 @@ t_list	*ft_lstlast(t_stack *stack)
 	if (!list)
 		return (NULL);
 	while (++i < stack->size)
-	{
 		if (list->next)
 			list = list->next;
-	}
 	return (list);
 }
 
-t_list	*ft_lstnew(t_stack *stack, int nb, int pos)
+void	fill_stack_a(t_stack *stack_a, t_stack *stack_b)
+{
+	int		half;
+	int		index_pos;
+	t_list	*biggest;
+
+	while (stack_b->size > 0)
+	{
+		index_pos = 0;
+		if (stack_b->size % 2 != 0)
+			half = (stack_b->size + 1) / 2;
+		else
+			half = stack_b->size / 2;
+		biggest = get_biggest(stack_b, &index_pos);
+		if (index_pos < half)
+		{
+			while (stack_b->stack->nb != biggest->nb)
+				ft_rotate(stack_b, 1, 'b');
+		}
+		else
+		{
+			while (stack_b->stack->nb != biggest->nb)
+				ft_reverse_rotate(stack_b, 1, 'b');
+		}
+		ft_pa(stack_a, stack_b, 1);
+	}
+}
+
+t_list	*ft_lstnew(int nb, int pos)
 {
 	t_list	*list;
 
-	(void)stack;
 	list = malloc(sizeof(t_list));
 	if (!list)
 		return (NULL);
@@ -116,7 +139,7 @@ void	ft_lstadd_back(t_stack *stack, t_list **alst, t_list *new)
 
 void	ft_lstadd_front(t_stack *stack, t_list **alst, t_list *new)
 {
-	t_list *last;
+	t_list	*last;
 
 	if (!*alst)
 		*alst = new;
