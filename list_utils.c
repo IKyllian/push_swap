@@ -93,12 +93,12 @@ void	fill_stack_a(t_stack *stack_a, t_stack *stack_b)
 		if (index_pos < half)
 		{
 			while (stack_b->stack->nb != biggest->nb)
-				ft_rotate(stack_b, 1, 'b');
+				ft_rotate(stack_b, 1, "rb\n");
 		}
 		else
 		{
 			while (stack_b->stack->nb != biggest->nb)
-				ft_reverse_rotate(stack_b, 1, 'b');
+				ft_reverse_rotate(stack_b, 1, "rrb\n");
 		}
 		ft_pa(stack_a, stack_b, 1);
 	}

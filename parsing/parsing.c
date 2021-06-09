@@ -44,26 +44,25 @@ int	ft_atoi(char c, char next_c, int *sign, int *nb)
 	if (c == '-')
 	{
 		if ((!(next_c) || (next_c < 48 || next_c > 57)))
-		{
-			ft_putstr("Error: Invalid character\n");
 			return (0);
-		}
 		if (*sign == -1)
-		{
-			ft_putstr("Error: Invalid character\n");
 			return (0);
-		}
 		else
 			*sign = -1;
 	}
 	else if (c < 48 || c > 57)
-	{
-		ft_putstr("Error: Invalid character\n");
 		return (0);
-	}
 	else
 		*nb = *nb * 10 + (c - 48); // Pensé à check si le nombre passe negatif pour overflow
 	return (1);
+}
+
+void	add_quote_nb(t_stack *stack, int *is_valid, int *nb, int *sign)
+{
+	ft_lstadd_back(stack, &stack->stack, ft_lstnew(*nb * *sign, 0));
+	*nb = 0;
+	*sign = 1;
+	*is_valid = 0;
 }
 
 int	parse_nbr(char **argv, t_stack *stack, int i, int *is_valid)
@@ -84,12 +83,7 @@ int	parse_nbr(char **argv, t_stack *stack, int i, int *is_valid)
 			*is_valid = 1;
 		}
 		else if (*is_valid)
-		{
-			ft_lstadd_back(stack, &stack->stack, ft_lstnew(nb * sign, 0));
-			nb = 0;
-			sign = 1;
-			*is_valid = 0;
-		}
+			add_quote_nb(stack, is_valid, &nb, &sign);
 	}
 	if (*is_valid)
 		ft_lstadd_back(stack, &stack->stack, ft_lstnew(nb * sign, 0));
@@ -107,7 +101,10 @@ int	parsing(char **argv, t_stack *stack)
 	{
 		is_valid = 0;
 		if (!parse_nbr(argv, stack, i, &is_valid))
+		{
+			ft_putstr("Error: Invalid character\n");
 			return (0);
+		}		
 	}
 	if (!list_is_valid(stack))
 	{

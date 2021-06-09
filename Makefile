@@ -4,7 +4,7 @@ NAME_CHECKER = checker
 HEADER = push_swap.h
 SRCS_P_S =  main.c \
 		list_utils.c \
-		./checker_src/checker.c \
+		./checker_src/check.c \
 		./operations/push.c \
 		./operations/rotate.c \
 		./operations/swap.c \
@@ -13,9 +13,9 @@ SRCS_P_S =  main.c \
 		./str/ft_putstr.c \
 		./parsing/parsing.c \
 		./parsing/set_pos.c \
-		sort.c \
-		get_number.c \
-		chunk.c \
+		./sort/sort.c \
+		./sort/get_number.c \
+		./sort/chunk.c \
 
 SRCS_CHECKER = \
 			./checker_src/checker.c \
@@ -31,7 +31,7 @@ SRCS_CHECKER = \
 			./operations/swap.c \
 			./parsing/parsing.c \
 			./parsing/set_pos.c \
-			get_number.c \
+			./sort/get_number.c \
 
 OBJS_P_S = $(SRCS_P_S:.c=.o)
 OBJS_CHECKER = $(SRCS_CHECKER:.c=.o)

@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	set_chunk_limit500(t_stack *stack, int size, int *limit, int chunk)
 {

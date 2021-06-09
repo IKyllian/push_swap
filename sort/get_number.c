@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 t_list	*get_biggest(t_stack *stack, int *index_pos)
 {

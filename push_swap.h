@@ -67,7 +67,7 @@ void	print_list(t_stack *stack);
 void	fill_stack_a(t_stack *stack_a, t_stack *stack_b);
 
 /*			   SWAP             */
-void	ft_swap(t_stack *stack, int must_print, char which_stack);
+void	ft_swap(t_stack *stack, int must_print, char *str);
 void	ft_ss(t_stack *stack_a, t_stack *stack_b, int must_print);
 
 /*			   PUSH             */
@@ -75,9 +75,9 @@ void	ft_pa(t_stack *stack_a, t_stack *stack_b, int must_print);
 void	ft_pb(t_stack *stack_a, t_stack *stack_b, int must_print);
 
 /*			   ROTATE             */
-void	ft_rotate(t_stack *list, int must_print, char which_stack);
+void	ft_rotate(t_stack *list, int must_print, char *str);
 void	ft_rr(t_stack *stack_a, t_stack *stack_b, int must_print);
-void	ft_reverse_rotate(t_stack *list, int must_print, char which_stack);
+void	ft_reverse_rotate(t_stack *list, int must_print, char *str);
 void	ft_rrr(t_stack *stack_a, t_stack *stack_b, int must_print);
 
 #endif

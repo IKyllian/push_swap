@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	ft_swap(t_stack *stack, int must_print, char which_stack)
+void	ft_swap(t_stack *stack, int must_print, char *str)
 {
 	int	temp_nb;
 	int	temp_pos;
@@ -26,18 +26,13 @@ void	ft_swap(t_stack *stack, int must_print, char which_stack)
 	stack->stack->next->nb = temp_nb;
 	stack->stack->next->pos = temp_pos;
 	if (must_print)
-	{
-		if (which_stack == 'a')
-			ft_putstr("sa\n");
-		else
-			ft_putstr("sb\n");
-	}
+		ft_putstr(str);
 }
 
 void	ft_ss(t_stack *stack_a, t_stack *stack_b, int must_print)
 {
-	ft_swap(stack_a, 0, 0);
-	ft_swap(stack_b, 0, 0);
+	ft_swap(stack_a, 0, NULL);
+	ft_swap(stack_b, 0, NULL);
 	if (must_print)
 		ft_putstr("ss\n");
 }

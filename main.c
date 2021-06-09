@@ -51,7 +51,7 @@ void	ft_exec(t_stack *stack_a, t_stack *stack_b)
 	if (!check_order(stack_a, stack_b))
 	{
 		if (stack_a->size == 2)
-			ft_swap(stack_a, 1, 'a');
+			ft_swap(stack_a, 1, "sa\n");
 		if (stack_a->size == 3)
 			sort_three(stack_a);
 		else if (stack_a->size == 4)

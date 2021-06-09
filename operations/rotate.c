@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	ft_rotate(t_stack *stack, int must_print, char which_stack)
+void	ft_rotate(t_stack *stack, int must_print, char *str)
 {
 	t_list	**list;
 	t_list	*temp;
@@ -27,23 +27,18 @@ void	ft_rotate(t_stack *stack, int must_print, char which_stack)
 		stack->size--;
 	}
 	if (must_print)
-	{
-		if (which_stack == 'a')
-			ft_putstr("ra\n");
-		else
-			ft_putstr("rb\n");
-	}
+		ft_putstr(str);
 }
 
 void	ft_rr(t_stack *stack_a, t_stack *stack_b, int must_print)
 {
-	ft_rotate(stack_a, 0, 0);
-	ft_rotate(stack_b, 0, 0);
+	ft_rotate(stack_a, 0, NULL);
+	ft_rotate(stack_b, 0, NULL);
 	if (must_print)
 		ft_putstr("rr\n");
 }
 
-void	ft_reverse_rotate(t_stack *stack, int must_print, char which_stack)
+void	ft_reverse_rotate(t_stack *stack, int must_print, char *str)
 {
 	t_list	**list;
 	t_list	*last;
@@ -57,18 +52,13 @@ void	ft_reverse_rotate(t_stack *stack, int must_print, char which_stack)
 		stack->size--;
 	}
 	if (must_print)
-	{
-		if (which_stack == 'a')
-			ft_putstr("rra\n");
-		else
-			ft_putstr("rrb\n");
-	}
+		ft_putstr(str);
 }
 
 void	ft_rrr(t_stack *stack_a, t_stack *stack_b, int must_print)
 {
-	ft_reverse_rotate(stack_a, 0, 0);
-	ft_reverse_rotate(stack_b, 0, 0);
+	ft_reverse_rotate(stack_a, 0, NULL);
+	ft_reverse_rotate(stack_b, 0, NULL);
 	if (must_print)
 		ft_putstr("rrr\n");
 }
