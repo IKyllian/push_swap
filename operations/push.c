@@ -36,7 +36,7 @@ void	ft_pa(t_stack *stack_a, t_stack *stack_b, int must_print)
 	if (stack_b->size > 0)
 	{
 		ft_lstadd_front(stack_a, list_a, ft_lstnew((*list_b)->nb,
-				(*list_b)->pos));
+				(*list_b)->pos, stack_a, stack_b));
 		if (stack_b->size > 1)
 			ft_push(list_b, stack_b);
 		else
@@ -60,7 +60,7 @@ void	ft_pb(t_stack *stack_a, t_stack *stack_b, int must_print)
 	if (stack_a->size > 0)
 	{
 		ft_lstadd_front(stack_b, list_b, ft_lstnew((*list_a)->nb,
-				(*list_a)->pos));
+				(*list_a)->pos, stack_a, stack_b));
 		if (stack_a->size > 1)
 			ft_push(list_a, stack_a);
 		else

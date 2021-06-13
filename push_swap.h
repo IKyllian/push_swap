@@ -37,8 +37,13 @@ void	ft_putstr(char *str);
 
 void	print_stacks(t_stack *stack_a, t_stack *stack_b);
 
+/*			ERROR / FREE           */
+void	free_linked_list(t_list *list, int size);
+void	free_stacks(t_stack *stack_a, t_stack *stack_b);
+void	ft_error(t_stack *stack_a, t_stack *stack_b);
+
 /*			SORT           */
-void	sort_three(t_stack *stack_a);
+void	sort_three(t_stack *stack_a, t_stack *stack_b);
 void	sort_four(t_stack *stack_a, t_stack *stack_b);
 void	sort_five(t_stack *stack_a, t_stack *stack_b);
 void	sort_hundred(t_stack *stack_a, t_stack *stack_b, int size_a);
@@ -60,7 +65,7 @@ int		check_order(t_stack *stack_a, t_stack *stack_b);
 
 /*			LIST_UTILS           */
 t_list	*ft_lstlast(t_stack *stack);
-t_list	*ft_lstnew(int nb, int pos);
+t_list	*ft_lstnew(int nb, int pos, t_stack *stack_a, t_stack *stack_b);
 void	ft_lstadd_back(t_stack *stack, t_list **alst, t_list *new);
 void	ft_lstadd_front(t_stack *stack, t_list **alst, t_list *new);
 void	print_list(t_stack *stack);
@@ -75,9 +80,9 @@ void	ft_pa(t_stack *stack_a, t_stack *stack_b, int must_print);
 void	ft_pb(t_stack *stack_a, t_stack *stack_b, int must_print);
 
 /*			   ROTATE             */
-void	ft_rotate(t_stack *list, int must_print, char *str);
+void	ft_rotate(t_stack *list, int must_print, char *str, t_stack *stack_b);
 void	ft_rr(t_stack *stack_a, t_stack *stack_b, int must_print);
-void	ft_reverse_rotate(t_stack *list, int must_print, char *str);
+void	ft_reverse_rotate(t_stack *list, int must_print, char *str, t_stack *stack_b);
 void	ft_rrr(t_stack *stack_a, t_stack *stack_b, int must_print);
 
 #endif

@@ -93,24 +93,27 @@ void	fill_stack_a(t_stack *stack_a, t_stack *stack_b)
 		if (index_pos < half)
 		{
 			while (stack_b->stack->nb != biggest->nb)
-				ft_rotate(stack_b, 1, "rb\n");
+				ft_rotate(stack_b, 1, "rb\n", stack_a);
 		}
 		else
 		{
 			while (stack_b->stack->nb != biggest->nb)
-				ft_reverse_rotate(stack_b, 1, "rrb\n");
+				ft_reverse_rotate(stack_b, 1, "rrb\n", stack_a);
 		}
 		ft_pa(stack_a, stack_b, 1);
 	}
 }
 
-t_list	*ft_lstnew(int nb, int pos)
+t_list	*ft_lstnew(int nb, int pos, t_stack *stack_a, t_stack *stack_b)
 {
 	t_list	*list;
 
 	list = malloc(sizeof(t_list));
 	if (!list)
+	{
+		ft_error(stack_a, stack_b);
 		return (NULL);
+	}
 	list->nb = nb;
 	list->pos = pos;
 	list->prev = NULL;
@@ -141,6 +144,8 @@ void	ft_lstadd_front(t_stack *stack, t_list **alst, t_list *new)
 {
 	t_list	*last;
 
+	if (!new)
+		return ;
 	if (!*alst)
 		*alst = new;
 	else

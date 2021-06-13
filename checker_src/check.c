@@ -25,15 +25,15 @@ int	check_cmd(char *line, t_stack *stack_a, t_stack *stack_b)
 	else if (ft_strcmp(line, "pb") == 0)
 		ft_pb(stack_a, stack_b, 0);
 	else if (ft_strcmp(line, "ra") == 0)
-		ft_rotate(stack_a, 0, NULL);
+		ft_rotate(stack_a, 0, NULL, stack_b);
 	else if (ft_strcmp(line, "rb") == 0)
-		ft_rotate(stack_b, 0, NULL);
+		ft_rotate(stack_b, 0, NULL, stack_a);
 	else if (ft_strcmp(line, "rr") == 0)
 		ft_rr(stack_a, stack_b, 0);
 	else if (ft_strcmp(line, "rra") == 0)
-		ft_reverse_rotate(stack_a, 0, NULL);
+		ft_reverse_rotate(stack_a, 0, NULL, stack_b);
 	else if (ft_strcmp(line, "rrb") == 0)
-		ft_reverse_rotate(stack_b, 0, NULL);
+		ft_reverse_rotate(stack_b, 0, NULL, stack_a);
 	else if (ft_strcmp(line, "rrr") == 0)
 		ft_rrr(stack_a, stack_b, 0);
 	else

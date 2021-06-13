@@ -59,7 +59,7 @@ int	ft_atoi(char c, char next_c, int *sign, int *nb)
 
 void	add_quote_nb(t_stack *stack, int *is_valid, int *nb, int *sign)
 {
-	ft_lstadd_back(stack, &stack->stack, ft_lstnew(*nb * *sign, 0));
+	ft_lstadd_back(stack, &stack->stack, ft_lstnew(*nb * *sign, 0, stack, NULL));
 	*nb = 0;
 	*sign = 1;
 	*is_valid = 0;
@@ -86,7 +86,7 @@ int	parse_nbr(char **argv, t_stack *stack, int i, int *is_valid)
 			add_quote_nb(stack, is_valid, &nb, &sign);
 	}
 	if (*is_valid)
-		ft_lstadd_back(stack, &stack->stack, ft_lstnew(nb * sign, 0));
+		ft_lstadd_back(stack, &stack->stack, ft_lstnew(nb * sign, 0, stack, NULL));
 	return (1);
 }
 

@@ -21,31 +21,6 @@ t_stack	init_list(void)
 	return (stack);
 }
 
-void	free_linked_list(t_list *list, int size)
-{
-	t_list	*next;
-	int		i;
-
-	i = 0;
-	next = NULL;
-	while (++i <= size)
-	{
-		if (list->next)
-			next = list->next;
-		else
-			next = NULL;
-		free(list);
-		list = NULL;
-		list = next;
-	}
-}
-
-void	free_stacks(t_stack *stack_a, t_stack *stack_b)
-{
-	free_linked_list(stack_a->stack, stack_a->size);
-	free_linked_list(stack_b->stack, stack_b->size);
-}
-
 void	ft_exec(t_stack *stack_a, t_stack *stack_b)
 {
 	if (!check_order(stack_a, stack_b))
@@ -53,7 +28,7 @@ void	ft_exec(t_stack *stack_a, t_stack *stack_b)
 		if (stack_a->size == 2)
 			ft_swap(stack_a, 1, "sa\n");
 		if (stack_a->size == 3)
-			sort_three(stack_a);
+			sort_three(stack_a, stack_b);
 		else if (stack_a->size == 4)
 			sort_four(stack_a, stack_b);
 		else if (stack_a->size == 5)
