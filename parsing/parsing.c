@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 13:08:03 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/08 16:06:04 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/22 16:03:00 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int	ft_atoi(char c, char next_c, int *sign, int *nb)
 
 void	add_quote_nb(t_stack *stack, int *is_valid, int *nb, int *sign)
 {
-	ft_lstadd_back(stack, &stack->stack, ft_lstnew(*nb * *sign, 0, stack, NULL));
+	ft_lstadd_back(stack, &stack->stack,
+		ft_lstnew(*nb * *sign, 0, stack, NULL));
 	*nb = 0;
 	*sign = 1;
 	*is_valid = 0;
@@ -86,7 +87,8 @@ int	parse_nbr(char **argv, t_stack *stack, int i, int *is_valid)
 			add_quote_nb(stack, is_valid, &nb, &sign);
 	}
 	if (*is_valid)
-		ft_lstadd_back(stack, &stack->stack, ft_lstnew(nb * sign, 0, stack, NULL));
+		ft_lstadd_back(stack, &stack->stack,
+			ft_lstnew(nb * sign, 0, stack, NULL));
 	return (1);
 }
 

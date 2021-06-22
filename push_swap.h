@@ -82,7 +82,7 @@ void	ft_pb(t_stack *stack_a, t_stack *stack_b, int must_print);
 /*			   ROTATE             */
 void	ft_rotate(t_stack *list, int must_print, char *str, t_stack *stack_b);
 void	ft_rr(t_stack *stack_a, t_stack *stack_b, int must_print);
-void	ft_reverse_rotate(t_stack *list, int must_print, char *str, t_stack *stack_b);
+void	ft_reverse_rotate(t_stack *list, int print, char *str, t_stack *stck_b);
 void	ft_rrr(t_stack *stack_a, t_stack *stack_b, int must_print);
 
 #endif

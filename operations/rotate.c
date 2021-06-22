@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 09:42:45 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/08 15:58:18 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/22 16:05:41 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_rotate(t_stack *stack, int must_print, char *str, t_stack *stack_b)
 	if (stack->size > 1)
 	{
 		ft_lstadd_back(stack, list, ft_lstnew((*list)->nb, (*list)->pos,
-			stack, stack_b));
+				stack, stack_b));
 		temp = (*list);
 		*list = (*list)->next;
 		free(temp);
@@ -39,7 +39,7 @@ void	ft_rr(t_stack *stack_a, t_stack *stack_b, int must_print)
 		ft_putstr("rr\n");
 }
 
-void	ft_reverse_rotate(t_stack *stack, int must_print, char *str, t_stack *stack_b)
+void	ft_reverse_rotate(t_stack *stack, int print, char *str, t_stack *stck_b)
 {
 	t_list	**list;
 	t_list	*last;
@@ -49,11 +49,11 @@ void	ft_reverse_rotate(t_stack *stack, int must_print, char *str, t_stack *stack
 	{
 		last = ft_lstlast(stack);
 		ft_lstadd_front(stack, list, ft_lstnew(last->nb, last->pos,
-			stack, stack_b));
+				stack, stck_b));
 		free(last);
 		stack->size--;
 	}
-	if (must_print)
+	if (print)
 		ft_putstr(str);
 }
 
