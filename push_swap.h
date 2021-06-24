@@ -59,6 +59,7 @@ int		get_smallest(t_stack *stack, int limit, int chunk, int reverse);
 int		parsing(char **argv, t_stack *stack_a);
 void	fill_pos(t_list *min, t_list *max, t_list *first, t_stack *stack_a);
 void	set_pos(t_stack *stack_a);
+char	*ft_itoa(int n);
 
 int		check_cmd(char *line, t_stack *stack_a, t_stack *stack_b);
 int		check_order(t_stack *stack_a, t_stack *stack_b);

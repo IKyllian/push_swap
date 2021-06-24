@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 13:08:03 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/22 16:03:00 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/23 15:32:44 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	parsing(char **argv, t_stack *stack)
 		{
 			ft_putstr("Error: Invalid character\n");
 			return (0);
-		}		
+		}
 	}
 	if (!list_is_valid(stack))
 	{

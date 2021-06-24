@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 13:40:41 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/08 15:28:05 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/23 14:23:22 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	sort_three(t_stack *stack_a, t_stack *stack_b)
 	else if (stack_a->stack->nb > middle->nb && middle->nb < last->nb
 		&& stack_a->stack->nb > last->nb)
 		ft_rotate(stack_a, 1, "ra\n", stack_b);
-	else if (stack_a->stack->nb < middle->nb && stack_a->stack->nb < last->nb)
+	else if (stack_a->stack->nb < middle->nb && stack_a->stack->nb < last->nb
+		&& middle->nb > last->nb)
 	{
 		ft_swap(stack_a, 1, "sa\n");
 		ft_rotate(stack_a, 1, "ra\n", stack_b);
@@ -41,7 +42,7 @@ void	sort_three(t_stack *stack_a, t_stack *stack_b)
 
 void	sort_five(t_stack *stack_a, t_stack *stack_b)
 {
-	while (stack_a->size != 3)
+	while (stack_a->size > 3)
 	{
 		if (stack_a->stack->pos == 0 || stack_a->stack->pos == 1)
 			ft_pb(stack_a, stack_b, 1);
@@ -62,7 +63,7 @@ void	sort_five(t_stack *stack_a, t_stack *stack_b)
 
 void	sort_four(t_stack *stack_a, t_stack *stack_b)
 {
-	while (stack_a->size != 3)
+	while (stack_a->size > 3)
 	{
 		if (stack_a->stack->pos == 0)
 			ft_pb(stack_a, stack_b, 1);

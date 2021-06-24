@@ -17,6 +17,8 @@ SRCS_P_S =  main.c \
 		./sort/get_number.c \
 		./sort/chunk.c \
 		./free_errors.c \
+		./parsing/itoa.c \
+		./print_list.c
 
 SRCS_CHECKER = \
 			./checker_src/checker.c \
@@ -34,6 +36,8 @@ SRCS_CHECKER = \
 			./parsing/set_pos.c \
 			./sort/get_number.c \
 			./free_errors.c \
+			./parsing/itoa.c \
+			./print_list.c
 
 OBJS_P_S = $(SRCS_P_S:.c=.o)
 OBJS_CHECKER = $(SRCS_CHECKER:.c=.o)
