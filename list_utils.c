@@ -6,13 +6,11 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 09:42:16 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/23 14:46:21 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/24 12:34:04 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
 
 t_list	*ft_lstlast(t_stack *stack)
 {

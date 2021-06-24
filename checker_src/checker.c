@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 12:14:43 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/23 14:36:18 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/24 12:33:22 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,15 @@ void	exec_checker(t_stack *stack_a, t_stack *stack_b)
 		free(line);
 		line = NULL;
 	}
+	if (line)
+	{
+		free(line);
+		line = NULL;
+	}
 	if (!check_order(stack_a, stack_b))
-		ft_putstr("KO\n");
+		ft_putstr("\033[1;31mKO\n\033[0;37m");
 	else
-		ft_putstr("OK\n");
+		ft_putstr("\033[1;32mOK\n\033[0;37m");
 }
 
 int	main(int argc, char **argv)

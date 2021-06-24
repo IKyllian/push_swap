@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 13:08:03 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/23 15:32:44 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/24 12:58:37 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,56 +39,55 @@ int	list_is_valid(t_stack *stack)
 	return (1);
 }
 
-int	ft_atoi(char c, char next_c, int *sign, int *nb)
+int	parse_nbr(char *str, t_stack *stack)
 {
-	if (c == '-')
-	{
-		if ((!(next_c) || (next_c < 48 || next_c > 57)))
-			return (0);
-		if (*sign == -1)
-			return (0);
-		else
-			*sign = -1;
-	}
-	else if (c < 48 || c > 57)
+	int		nb;
+	char	*char_nb;
+
+	nb = 0;
+	if (!ft_atoi(str, &nb))
 		return (0);
-	else
-		*nb = *nb * 10 + (c - 48); // Pensé à check si le nombre passe negatif pour overflow
+	char_nb = ft_itoa(nb);
+	if (ft_strcmp(str, char_nb) != 0)
+	{
+		if (char_nb)
+			free(char_nb);
+		return (0);
+	}
+	ft_lstadd_back(stack, &stack->stack,
+		ft_lstnew(nb, 0, stack, NULL));
+	if (char_nb)
+		free(char_nb);
 	return (1);
 }
 
-void	add_quote_nb(t_stack *stack, int *is_valid, int *nb, int *sign)
+int	parse_quote(char *str, t_stack *stack)
 {
-	ft_lstadd_back(stack, &stack->stack,
-		ft_lstnew(*nb * *sign, 0, stack, NULL));
-	*nb = 0;
-	*sign = 1;
-	*is_valid = 0;
+	char	**tab;
+	int		i;
+
+	tab = ft_split(str, ' ');
+	i = -1;
+	while (tab[++i])
+	{
+		if (!parse_nbr(tab[i], stack))
+		{
+			ft_putstr("Error: Invalid character\n");
+			free_tab(tab);
+			return (0);
+		}	
+	}
+	free_tab(tab);
+	return (1);
 }
 
-int	parse_nbr(char **argv, t_stack *stack, int i, int *is_valid)
+int	check_list(t_stack *stack)
 {
-	int	j;
-	int	nb;
-	int	sign;
-
-	j = -1;
-	nb = 0;
-	sign = 1;
-	while (argv[i][++j])
+	if (!list_is_valid(stack))
 	{
-		if (argv[i][j] != ' ' && argv[i][j] != '\t')
-		{
-			if (!ft_atoi(argv[i][j], argv[i][j + 1], &sign, &nb))
-				return (0);
-			*is_valid = 1;
-		}
-		else if (*is_valid)
-			add_quote_nb(stack, is_valid, &nb, &sign);
+		ft_putstr("Error: Two numbers are same\n");
+		return (0);
 	}
-	if (*is_valid)
-		ft_lstadd_back(stack, &stack->stack,
-			ft_lstnew(nb * sign, 0, stack, NULL));
 	return (1);
 }
 
@@ -102,16 +101,21 @@ int	parsing(char **argv, t_stack *stack)
 	while (argv[++i])
 	{
 		is_valid = 0;
-		if (!parse_nbr(argv, stack, i, &is_valid))
+		if (is_in_quote(argv[i]))
 		{
-			ft_putstr("Error: Invalid character\n");
-			return (0);
+			if (!parse_quote(argv[i], stack))
+				return (0);
+		}
+		else
+		{
+			if (!parse_nbr(argv[i], stack))
+			{
+				ft_putstr("Error: Invalid character\n");
+				return (0);
+			}	
 		}
 	}
-	if (!list_is_valid(stack))
-	{
-		ft_putstr("Error: Two numbers are same\n");
+	if (!check_list(stack))
 		return (0);
-	}
 	return (1);
 }

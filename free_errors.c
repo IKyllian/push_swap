@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 15:54:00 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/23 14:36:30 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/24 12:02:30 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ void	free_linked_list(t_list *list, int size)
 		list = NULL;
 		list = next;
 	}
+}
+
+void	free_tab(char **str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		free(str[i]);
+	free(str);
 }
 
 void	free_stacks(t_stack *stack_a, t_stack *stack_b)
