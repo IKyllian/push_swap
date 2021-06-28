@@ -27,7 +27,7 @@ void	fill_pos(t_list *min, t_list *max, t_list *first, t_stack *stack_a)
 	while (++i < stack_a->size - 1)
 	{
 		j = 0;
-		while (++j < stack_a->size + 1)
+		while (j++ < stack_a->size)
 		{
 			if (list->nb > min->nb && list->nb < max->nb
 				&& list->nb > old_min->nb && temp->nb > list->nb)
