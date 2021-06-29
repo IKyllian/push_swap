@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 09:42:23 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/29 14:18:08 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/29 14:22:05 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,11 @@ int	main(int argc, char **argv)
 			free_stacks(&stack_a, &stack_b);
 			return (0);
 		}
-		free_stacks(&stack_a, &stack_b);
+		else
+		{
+			free_stacks(&stack_a, &stack_b);
+			return (1);
+		}
 	}
 	return (0);
 }
