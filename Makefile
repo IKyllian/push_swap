@@ -48,7 +48,7 @@ CC = gcc
 FLAGS = -Wextra -Werror -Wall
 RM = rm -f
 
-all : $(NAME_P_S) $(NAME_CHECKER)
+all : $(NAME_P_S) bonus
  
 %.o : %.c $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
@@ -56,8 +56,8 @@ all : $(NAME_P_S) $(NAME_CHECKER)
 $(NAME_P_S) : $(OBJS_P_S) $(HEADER)
 		$(CC) $(FLAGS) -o $@ $(OBJS_P_S)
 
-$(NAME_CHECKER) : $(OBJS_CHECKER) $(HEADER)
-		$(CC) $(FLAGS) -o $@ $(OBJS_CHECKER)
+bonus : $(OBJS_CHECKER) $(HEADER)
+		$(CC) $(FLAGS) -o $(NAME_CHECKER) $(OBJS_CHECKER)
 
 clean :
 		$(RM) $(OBJS_P_S)
@@ -69,4 +69,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : clean fclean re all run
+.PHONY : clean fclean re all run bonus

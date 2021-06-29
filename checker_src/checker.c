@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 12:14:43 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/24 12:33:22 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/29 10:31:47 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,34 @@ t_stack	init_list(void)
 	return (stack);
 }
 
+int	exec_error(int ret, char **line)
+{
+	if (ret <= 0)
+	{
+		if (*line)
+		{
+			free(*line);
+			*line = NULL;
+		}
+		return (1);
+	}
+	return (0);
+}
+
 void	exec_checker(t_stack *stack_a, t_stack *stack_b)
 {
 	char	*line;
+	int		ret;
 
+	ret = 1;
 	set_pos(stack_a);
-	while (get_next_line(0, &line))
+	while (ret)
 	{
+		ret = get_next_line(0, &line);
+		if (exec_error(ret, &line))
+			break ;
 		if (!check_cmd(line, stack_a, stack_b))
 			ft_putstr("Error: L'instruction n\'existe pas\n");
-		free(line);
-		line = NULL;
-	}
-	if (line)
-	{
 		free(line);
 		line = NULL;
 	}
