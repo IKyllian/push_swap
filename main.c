@@ -6,7 +6,7 @@
 /*   By: kdelport <kdelport@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 09:42:23 by kdelport          #+#    #+#             */
-/*   Updated: 2021/06/29 10:07:53 by kdelport         ###   ########.fr       */
+/*   Updated: 2021/06/29 14:13:39 by kdelport         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,15 @@ int	main(int argc, char **argv)
 	t_stack	stack_a;
 	t_stack	stack_b;
 
-	if (argc >= 2)
+	stack_a = init_list();
+	stack_b = init_list();
+	if (parsing(argv, &stack_a))
 	{
-		stack_a = init_list();
-		stack_b = init_list();
-		if (parsing(argv, &stack_a))
-		{
-			set_pos(&stack_a);
-			ft_exec(&stack_a, &stack_b);
-			free_stacks(&stack_a, &stack_b);
-			return (0);
-		}
+		set_pos(&stack_a);
+		ft_exec(&stack_a, &stack_b);
 		free_stacks(&stack_a, &stack_b);
+		return (0);
 	}
-	else
-		ft_putstr("Error: Arguments\n");
+	free_stacks(&stack_a, &stack_b);
 	return (1);
 }
